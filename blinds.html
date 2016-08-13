@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>百叶窗</title>
+<script>
+var timer=null;
+window.onload=function(){
+	var oBox=document.getElementById('box');
+	var aDiv=oBox.getElementsByTagName('div');
+	var m=aDiv.length;
+	var n=52;
+	for(i=0;i<m;i++)
+	{
+		aDiv[i].index=i;
+		aDiv[i].onclick=function()
+		{
+			 if(aDiv[this.index].offsetWidth==52)
+				 {
+					 n=400;
+					 }
+				if(aDiv[this.index].offsetWidth==400)
+				{
+					n=52;
+					}
+			
+			
+			if(n==52)
+			{
+				for(j=m;j>=this.index;j--)
+				{
+					sportFrame(timer,aDiv[j],52)
+					}
+					}
+			else if(n==400)
+			{
+				for(j=0;j<=this.index;j++)
+				{
+					sportFrame(timer,aDiv[j],400)
+					}
+				}
+				
+		};
+		
+		}	
+};
+
+function sportFrame(timer,obj,target)
+{
+	clearInterval(timer)
+	var speed=0;
+	timer=setInterval(function()
+	{
+	  speed=(target-obj.offsetWidth)/10;
+	  speed=speed>0?Math.ceil(speed):Math.floor(speed);
+	  if(obj.offsetWidth==target)
+	  {
+		  clearInterval(timer);
+		  }else{
+		    obj.style.width=obj.offsetWidth+speed+'px';	  
+		}
+	},30);
+	}
+</script>
+<style>
+*{ margin:0px;padding:0px;border:0px;}
+
+#box{ width:520px;
+height:300px;
+position:relative;
+background:url(images/14.jpg);
+margin:50px auto;
+}
+
+#box1{ width:400px;
+height:300px;
+background:url(images/5.jpg);
+position:absolute;
+top:0px;
+left:120px;}
+
+#box2{ width:400px;
+height:300px;
+background:url(images/8.jpg);
+position:absolute;
+top:0px;
+left:80px;}
+
+#box3{ width:400px;
+height:300px;
+background:url(images/10.jpg);
+position:absolute;
+top:0px;
+left:40px;}
+
+#box4{ width:400px;
+height:300px;
+background:url(images/13.jpg);
+position:absolute;
+top:0px;
+left:0px;}
+
+div span{ width:52px;
+			height:300px;
+			position:absolute;
+			right:0px;
+			top:0px;
+			line-height:60px;
+			text-align:center;
+			background:#90C;
+			font-size:18px;
+			font-weight:700;
+			color:#000;
+			border-right:2px solid #0F3;}
+			
+
+</style>
+</head>
+
+<body>
+<div id="box">
+<div id="box1"><span>第<br>一<br>页</span></div>
+<div id="box2"><span>第<br>二<br>页</span></div>
+<div id="box3"><span>第<br>三<br>页</span></div>
+<div id="box4"><span>第<br>四<br>页</span></div>
+</div>
+</body>
+</html>
